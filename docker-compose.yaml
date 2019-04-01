@@ -65,7 +65,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./sonarr:/config
-      - /Volumes/HDD1/MEDIA/:/media
+      - /Volumes/HDD1/MEDIA:/media
     ports:
       - 8989:8989
     environment:
