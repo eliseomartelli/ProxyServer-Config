@@ -87,3 +87,35 @@ services:
       - PUID=1001
       - PGID=1001
       - TZ=Europe/Rome
+
+  homeassistant:
+    container_name: home-assistant
+    image: homeassistant/home-assistant:stable
+    volumes:
+      - ../Projects/HomeAutomation-Config/homeassistant:/config
+    environment:
+      - TZ=Europe/Rome
+    ports:
+      - 8123:8123
+      - 51827:51827
+      - 51827:51827/udp
+    restart: always
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - ./mosquitto/:/mosquitto/config/
+    restart: always
+  
+  appdaemon:
+    image: acockburn/appdaemon:latest
+    container_name: appdaemon
+    volumes:
+      - ../Projects/HomeAutomation-Config/appdaemon:/conf
+    ports:
+      - 5050:5050
+    restart: always
