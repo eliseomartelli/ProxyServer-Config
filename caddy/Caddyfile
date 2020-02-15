@@ -1,0 +1,23 @@
+jf.{$DOMAIN} {
+	tls me@eliseomartelli.it
+	proxy / jellyfin:8096 {
+		websocket
+		transparent
+	}
+}
+
+tr.{$DOMAIN} {
+	tls me@eliseomartelli.it
+	proxy / transmission:9091 {
+		websocket
+		transparent
+	}
+}
+
+homeassistant.{$DOMAIN} {
+	tls me@eliseomartelli.it
+	proxy / home-assistant:8123 {
+		websocket
+		transparent
+	}
+}
